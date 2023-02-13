@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <vs-dialog width="550px" not-center v-model="sqlDialog">
+        <vs-dialog width="550px" not-center scroll overflow-hidden v-model="sqlDialog">
             <template #header>
                 <h4 class="px-3 pt-2">
                     <b>SQL Statement</b>
@@ -16,18 +16,18 @@
 
             <template #footer>
                 <div class="con-footer mt-5 d-flex justify-end">
-                    <vs-button @click="sqlDialog = false" dark transparent class="px-6">
+                    <vs-button @click="sqlDialog = false" class="px-6">
                         Exit
                     </vs-button>
                 </div>
             </template>
         </vs-dialog>
 
-        <vs-card type="0" class="mb-4 w-100 transparent">
+        <vs-card type="0" class="mb-4 w-100">
             <template #title>
                 <div class="d-flex align-center justify-space-between pt-2">
                     <div class="fw-600">
-                        <div>{{ title }}</div>
+                        <div class="text-white h4">{{ title }}</div>
                         <div class="muted-text smaller fw-400 mt-1">
                             <span>Last Updated:</span>
                             <span class="ml-1">{{ updatedAt }}</span>
@@ -38,7 +38,7 @@
                             <i class="isax isax-code muted"></i>
                         </button>
                         <template #tooltip>
-                            SQL Code
+                            SQL Statement
                         </template>
                     </vs-tooltip>
                 </div>

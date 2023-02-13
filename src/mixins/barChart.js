@@ -78,7 +78,7 @@ export const barChartMixin = {
                         })
                         i++;
                     }
-
+                    console.log("HHHH" , _chart);
                     return _chart;
                 } else {
 

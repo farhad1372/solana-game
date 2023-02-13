@@ -1,6 +1,6 @@
 <template>
     <div>
-        <vs-dialog width="550px" not-center v-model="sqlDialog">
+        <vs-dialog width="550px" not-center scroll overflow-hidden v-model="sqlDialog">
             <template #header>
                 <h4 class="px-3 pt-2">
                     <b>SQL Statement</b>
@@ -37,7 +37,7 @@
                             <i class="isax isax-code muted"></i>
                         </button>
                         <template #tooltip>
-                            SQL Code
+                            SQL Statement
                         </template>
                     </vs-tooltip>
                 </div>

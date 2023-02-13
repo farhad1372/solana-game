@@ -4,7 +4,7 @@ export const flipSide = {
     data: function () {
         return {
             apiLoding: false,
-            colors: ['rgba(21,91,255,0.8)', 'rgba(255,71,87,0.8)', '#4CD7D0', '#F9D030', '#A16AE8', '#A1A9FE', '#F6D4D2', '#F41F4E']
+            colors: ['#009ef7', 'rgba(255,71,87,0.8)', '#4CD7D0', '#F9D030', '#A16AE8', '#A1A9FE', '#F6D4D2', '#F41F4E']
         }
     },
     methods: {
@@ -89,7 +89,7 @@ export const flipSide = {
         },
         formatXAxis(number) {
             if (this.xType === "category" && !this.formatNumberYAxis) return number;
-            if (number === 0) {
+            if (number === 0 || !number) {
                 return "0";
             } else if (number < 1) {
                 return number.toFixed(2)

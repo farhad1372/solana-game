@@ -42,8 +42,19 @@ import { formatDate } from "./filter/formatDate";
 Vue.filter("formatNumber", formatNumber);
 Vue.filter("formatDate", formatDate);
 
-import Layout from "@/components/layout.vue";
-Vue.component("Layout", Layout);
+
+// chart compoenets 
+import BarChart from './components/charts/bar.vue';
+import LineChart from './components/charts/line.vue';
+import SingleChart from './components/charts/single.vue';
+import DoughnutChart from './components/charts/doughnut.vue';
+
+Vue.component("BarChart", BarChart);
+Vue.component("LineChart", LineChart);
+Vue.component("SingleChart", SingleChart);
+Vue.component("DoughnutChart", DoughnutChart);
+
+
 
 new Vue({
   store,

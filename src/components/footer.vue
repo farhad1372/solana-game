@@ -53,7 +53,7 @@ export default {
 }
 
 a {
-    border: 1px solid #dadde1;
+    border: 1px solid var(--border-color);
     display: inline-flex !important;
     flex-direction: column;
     border-radius: 10px;

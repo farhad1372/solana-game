@@ -31,7 +31,8 @@
 
 
 export const formatNumber = (price, type) => {
-    if (price === 0) {
+  
+    if (price === 0 || !price ) {
         return "0";
     }
     if (price < 0.000009) {

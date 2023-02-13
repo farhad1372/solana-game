@@ -2,6 +2,7 @@
 @import "../fonts/poppins.css";
 @import "./responsive.scss";
 @import "./utils.scss";
+@import "./link-group.scss";
 
 @import "~vuesax/src/styles/vuesax.sass";
 @import "../icons/iconsax/style.css";
@@ -17,7 +18,10 @@ body {
     font-weight: 400 !important;
     width: 100vw !important;
     overflow-x: hidden !important;
-    color: #2c3e50 !important;
+    color: var(--text-color) !important;
+    background: url("../../assets/images/page-bg.jpg");
+    height: 100vh;
+    overflow-y: hidden;
     // height: 100vh;
     // overflow-y: hidden !important;
 }
@@ -33,9 +37,14 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: 500;
+    font-weight: 600;
     margin: 0;
     padding: 0;
+    color: var(--text-color-2);
+}
+
+h1 {
+    color: var(--text-color);
 }
 
 h1 {
@@ -43,16 +52,17 @@ h1 {
 }
 
 p {
-    font-weight: 400;
-    font-size: 0.92rem;
+    font-weight: 500;
+    font-size: 0.875rem;
     line-height: 1.9rem;
     margin: 0;
     margin: 0.3rem 0 3rem 0;
+    color: #6d6d80 !important;
 }
 
 a {
     text-decoration: none;
-    color: rgb(25, 91, 255) !important;
+    color: var(--primary);
 }
 
 button {
@@ -74,10 +84,23 @@ ul {
     }
 }
 
+.text-white {
+    color: #fff !important;
+}
+
+.mx-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
 .vs-sidebar__item {
     svg {
         width: 25px;
     }
+}
+
+.vs-sidebar-content {
+    background-color: red !important;
 }
 
 #page-wrapper {
@@ -90,7 +113,7 @@ ul {
         transition: all 0.25s ease;
         padding: 0 !important;
         border-radius: 20px 0 0 0 !important;
-        background-color: #f4f7f8;
+
         height: 100%;
         overflow-y: auto !important;
     }
@@ -118,6 +141,7 @@ ul {
         width: calc(100vw - 260px);
         right: 0;
         left: auto;
+        background-color: transparent !important;
 
         .toggle-sidebar-btn {
             background-color: transparent !important;
@@ -129,7 +153,6 @@ ul {
             i {
                 transition: 0.1s ease;
                 color: #020204 !important;
-
             }
             svg {
                 margin-top: 4px;
@@ -151,7 +174,7 @@ ul {
             padding: 0 !important;
             font-size: 1.3rem !important;
             background-color: transparent;
-            background-image: linear-gradient(45deg, #020204, #FE1C33);
+            background-image: linear-gradient(45deg, var(--primary), #13e6ff);
             background-size: 100%;
             -webkit-background-clip: text;
             -moz-background-clip: text;
@@ -190,6 +213,46 @@ ul {
     height: 5px;
     display: block;
     background: #ccc;
+}
+
+// ----------------------- Dialog
+.vs-dialog {
+    max-width: 550px !important;
+    overflow-wrap: break-word !important;
+    background-color: var(--card-bg) !important;
+
+    
+}
+
+.vs-dialog__header * {
+     color: #fff !important;
+}
+
+.vs-dialog-content {
+    background: rgba(30, 30, 30, 0.5) !important;
+    z-index: 9999999 !important;
+    backdrop-filter: blur(6px) !important;
+
+    .vs-dialog__close i {
+        &::after, &::before {
+            background-color: #aaa !important;
+        }
+    }
+
+    code {
+        color: var(--text-color-2) !important;
+        font-size: 13px !important;
+    }
+}
+
+
+.vs-card {
+    background-color: var(--card-bg) !important;
+    padding: 35px !important;
+    .vs-card__text,
+    .vs-card__title {
+        padding: 0 !important;
+    }
 }
 
 .single-chart.vs-card {
