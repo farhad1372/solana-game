@@ -50,6 +50,34 @@ const routes = [
                     title: ['Games', 'Aurory']
                 }
             },
+
+            {
+                path: "comparing",
+                name: "Comparing",
+                component: () => import("../pages/comparing/index.vue"),
+                meta: {
+                    next: {
+                        text: "General > Concepts",
+                        link: "general.concepts"
+                    },
+                    prev: null,
+                    title: ['Comparing']
+                }
+            },
+
+            {
+                path: "refrences",
+                name: "Refrences",
+                component: () => import("../pages/refrences/index.vue"),
+                meta: {
+                    next: {
+                        text: "General > Concepts",
+                        link: "general.concepts"
+                    },
+                    prev: null,
+                    title: ['Refrences']
+                }
+            },
         ]
     },
     {

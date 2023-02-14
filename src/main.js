@@ -48,11 +48,15 @@ import BarChart from './components/charts/bar.vue';
 import LineChart from './components/charts/line.vue';
 import SingleChart from './components/charts/single.vue';
 import DoughnutChart from './components/charts/doughnut.vue';
+import DataTable from "./components/table.vue";
 
 Vue.component("BarChart", BarChart);
 Vue.component("LineChart", LineChart);
 Vue.component("SingleChart", SingleChart);
 Vue.component("DoughnutChart", DoughnutChart);
+Vue.component("DataTable", DataTable);
+
+
 
 
 

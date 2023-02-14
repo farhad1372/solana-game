@@ -1,19 +1,40 @@
 <template>
   <div class="row">
     <div class="col-12">
-      <h4 class="mb-1">coindesk</h4>
-      <a class="mb-10 smaller d-block" href="https://www.coindesk.com/learn/what-are-blockchain-bridges-and-how-do-they-work/">
+      <h4 class="mb-1">Decrypt.co</h4>
+      <a
+        class="mb-10 smaller d-block"
+        target="_blank"
+        href="https://decrypt.co/110881/solana-nft-game-star-atlas-demo-epic-games-store"
+      >
         https://www.coindesk.com/learn/what-are-blockchain-bridges-and-how-do-they-work
       </a>
-      <h4 class="mb-1">coinspaidmedia</h4>
-      <a class="mb-10 smaller d-block"
-        href="https://coinspaidmedia.com/business/what-are-nft-tokens-and-why-are-they-saving-art/?utm_source=google&utm_medium=cpc&utm_content=gid|139018954533|aid|612068911676|placement|&utm_term=what is nft&utm_campaign=17823374330_English-search&gclid=CjwKCAiAwc-dBhA7EiwAxPRylCmfxqZpzayQCM_jqjVZtOOXSe2JmixEL2UUQOxDh6RixuN25n8koRoCufoQAvD_BwE">
-        https://coinspaidmedia.com/business/what-are-nft-tokens-and-why-are-they-saving-art/?utm_source=google&utm_medium=cpc&utm_content=gid|139018954533|aid|612068911676|placement|&utm_term=what
-        is
-        nft&utm_campaign=17823374330_English-search&gclid=CjwKCAiAwc-dBhA7EiwAxPRylCmfxqZpzayQCM_jqjVZtOOXSe2JmixEL2UUQOxDh6RixuN25n8koRoCufoQAvD_BwE
+      <h4 class="mb-1">Genopets</h4>
+      <a
+        class="mb-10 smaller d-block"
+        target="_blank"
+        href="https://whitepaper.genopets.me/overview/introduction"
+      >
+        https://whitepaper.genopets.me/overview/introduction
       </a>
-    </div>
 
+      <h4 class="mb-1">Aurory</h4>
+      <a
+        class="mb-10 smaller d-block"
+        target="_blank"
+        href="https://aurory.io/"
+      >
+        https://aurory.io/n
+      </a>
+
+      <h4 class="mb-1">Shroomdk</h4>
+      <a
+        class="mb-10 smaller d-block"
+        target="_blank"
+        href="https://sdk.flipsidecrypto.xyz/shroomdk"
+        >Shroomedk</a
+      >
+    </div>
   </div>
 </template>
 

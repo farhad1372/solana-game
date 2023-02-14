@@ -220,12 +220,16 @@ ul {
     max-width: 550px !important;
     overflow-wrap: break-word !important;
     background-color: var(--card-bg) !important;
-
-    
 }
 
 .vs-dialog__header * {
-     color: #fff !important;
+    color: #fff !important;
+}
+.vs-table__tr {
+    border-bottom: 1px solid var( --border-color) !important;
+}
+.vs-table__tr:hover td {
+    background-color: rgba($color: #1e1e2d, $alpha: 0.1) !important;
 }
 
 .vs-dialog-content {
@@ -234,7 +238,8 @@ ul {
     backdrop-filter: blur(6px) !important;
 
     .vs-dialog__close i {
-        &::after, &::before {
+        &::after,
+        &::before {
             background-color: #aaa !important;
         }
     }
@@ -244,7 +249,6 @@ ul {
         font-size: 13px !important;
     }
 }
-
 
 .vs-card {
     background-color: var(--card-bg) !important;
@@ -393,11 +397,49 @@ i {
 .vs-table__header,
 .vs-table__thead > .vs-table__tr > .vs-table__th,
 .vs-table__footer {
-    background-color: rgba(234, 237, 238, 1);
+    background-color: transparent !important;
+    // background-color: rgba(234, 237, 238, 1);
+}
+
+.vs-table__td {
+    color: var(--text-color) !important;
+}
+
+.vs-input__icon {
+    i {
+        color: #fff !important;
+    }
+}
+
+.vs-pagination__arrow {
+    background-color: #27273a !important ;
+    i {
+        &::after,
+        &::before {
+            background-color: #aaa !important;
+        }
+    }
+}
+
+.vs-input--has-icon ~ .vs-input__label {
+    color: #fff !important;
+}
+
+.vs-pagination__button:not(.active) {
+    background-color: #27273a !important;
+    color: #aaa !important;
+}
+
+.vs-pagination__button.active {
+    background-color: var(--primary) !important;
+}
+
+.vs-input-parent--border .vs-input-content .vs-input__affects__1 {
+    border-bottom-color: #777 !important;
 }
 
 .page-heading {
-    background-color: #eef2f5;
+    background-color: transparent !important;
 }
 
 .vs-sidebar__item__text:not(.small) {

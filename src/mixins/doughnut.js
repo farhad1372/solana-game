@@ -23,6 +23,19 @@ export const doughnutChartMixin = {
             if (this.sortDate && Object.keys(this.sortDate).length) _data.sort(this.sortDateHandler);
             if (this.someInGroup && Object.keys(this.someInGroup).length) _data = this.sumInGroupHandler(this.someInGroup.by, this.someInGroup.over, _data);
 
+            if (this.dataItem) { // * no use someInGroup.
+                var _dataItems = [];
+                Object.values(_data).forEach(d => {
+                    _dataItems.push(d[this.dataItem]);
+                })
+                return {
+                    labels: Object.keys(_data),
+                    datasets: [{
+                        data: _dataItems,
+                        backgroundColor: this.colors,
+                    }]
+                }
+            }
             return {
                 labels: Object.keys(_data),
                 datasets: [{

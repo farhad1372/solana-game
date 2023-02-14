@@ -43,10 +43,8 @@ export const lineChartMixin = {
                     labels: _data.map(el => el[this.axis.x]), // as xAxis,
                     datasets: []
                 }
+                console.log(_data);
                 let i = 0;
-                if (this.queryName === "daily-stable-coins-supply-trend") {
-                    console.log(_data);
-                }
                 while (i < this.stacked.number) {
                     _chart.datasets.push({
                         label: this.stacked.order[i],
@@ -59,9 +57,8 @@ export const lineChartMixin = {
                     })
                     i++;
                 }
-                if (this.queryName === "daily-stable-coins-supply-trend") {
-                    console.log(_chart);
-                }
+                
+                console.log(_chart);
                 return _chart;
 
             } else { // * _data is array and not grouped, we just maybe sort it.

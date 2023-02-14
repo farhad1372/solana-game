@@ -43,7 +43,7 @@
       <template #right>
         <div class="d-flex align-center pr-1 pr-lg-3">
           <img
-            src="@/assets/icons/opti-full-logo.png"
+            src="@/assets/sol.png"
             class="d-none d-sm-block"
             style="max-width: 100px; height: auto"
           />
@@ -74,10 +74,22 @@
                   active-class="activate"
                   exact
                 >
-                Aurory
+                  Aurory
                 </RouterLink>
-                <RouterLink to="/"> Refrences </RouterLink>
-                <RouterLink to="/"> About </RouterLink>
+                <RouterLink
+                  :to="{ name: 'Comparing' }"
+                  active-class="activate"
+                  exact
+                >
+                  Comparing
+                </RouterLink>
+                <RouterLink
+                  active-class="activate"
+                  exact
+                  :to="{ name: 'Refrences' }"
+                >
+                  Refrences
+                </RouterLink>
               </div>
               <div class="link-group-header">
                 <h3 class="d-flex">

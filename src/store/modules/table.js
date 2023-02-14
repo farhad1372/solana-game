@@ -1,67 +1,70 @@
 
 const state = {
     queries: {
-       'Near-Top-Fee-Spenders' : {
+      "game-3-1" : {
         result : null,
-        sql : `with near_prices as (
-          select date_trunc(hour,TIMESTAMP) as RECORDED_HOUR, SYMBOL, TOKEN_CONTRACT, avg(PRICE_USD) as PRICE_USD
-            from near.core.fact_prices
-            group by 1,2,3
-        ),
+        sql : `with mint as 
+        (select 
+         INNER_INSTRUCTION['instructions'][0]['parsed']['info']['mint'] as mint ,
+           INNER_INSTRUCTION['instructions'][0]['parsed']['info']['amount'] as amount,
+          date_trunc('day',BLOCK_TIMESTAMP) as date , tx_id,
+        CASE
+        when PROGRAM_ID in ('FLEET1qqzpexyaDpqb2DGsSzE2sDCizewCg9WjrA6DBW','traderDnaR5w6Tcoi3NFm53i48FTDNbGjBSZwWXDRrg','gateVwTnKyFrE8nxUUgfzoZTPKgJQZUbLsEidpG4Dp2') then 'Star Atlas'
+        when PROGRAM_ID in ('HAbiTatJVqoCJd9asyr6RxMEdwtfrQugwp7VAFyKWb1g','CrAFTUv7zKXBaS5471aCwHx7mq9Jp1eQQB5FQgdiSLyi','StaKe9nb7aUjXpjpZ45o6uJBsZxj2BWCDBtjk8LCg2v','srmv4uTCPF81hWDaPyEN2mLZ8XbvzuEM6LsAxR8NpjU') then 'Genopets'
+        when PROGRAM_ID in ('EXpwP3pqPzA4arF8i89w7smtvxHzyYETmCpPspLPrR7J','STkwf3sbMapjy7KV3hgrJtcVvY4SvRxWQ8pj4Enw1i5','StKLLTf7CQ9n5BgXPSDXENovLTCuNc7N2ehvTb6JZ5x','comp8FLpN5bbNUC2fhnkFtM7T16DWvaHs8N5dcaoZWP','CAsieqooSrgVxhgWRwh21gyjq7Rmuhmo4qTW9XzXtAvW') then 'Aurory'
+        end as game 
+        from 
+          solana.core.fact_events
         
-        near_fees as (
-            select TX_HASH, TRANSACTION_FEE/1e24 as TX_FEE, TX_FEE*PRICE_USD as FEE_USD, PRICE_USD as PRICE
-            from near.core.fact_transactions a 
-            join near_prices b
-            on date_trunc(hour, a.BLOCK_TIMESTAMP)=date_trunc(hour, b.RECORDED_HOUR) and SYMBOL='wNEAR'
-            where a.BLOCK_TIMESTAMP>=CURRENT_DATE-1000
-        ),
+        where 
+        PROGRAM_ID in ('FLEET1qqzpexyaDpqb2DGsSzE2sDCizewCg9WjrA6DBW','traderDnaR5w6Tcoi3NFm53i48FTDNbGjBSZwWXDRrg','gateVwTnKyFrE8nxUUgfzoZTPKgJQZUbLsEidpG4Dp2',
+          'HAbiTatJVqoCJd9asyr6RxMEdwtfrQugwp7VAFyKWb1g','CrAFTUv7zKXBaS5471aCwHx7mq9Jp1eQQB5FQgdiSLyi','StaKe9nb7aUjXpjpZ45o6uJBsZxj2BWCDBtjk8LCg2v','srmv4uTCPF81hWDaPyEN2mLZ8XbvzuEM6LsAxR8NpjU',
+          'EXpwP3pqPzA4arF8i89w7smtvxHzyYETmCpPspLPrR7J','STkwf3sbMapjy7KV3hgrJtcVvY4SvRxWQ8pj4Enw1i5','StKLLTf7CQ9n5BgXPSDXENovLTCuNc7N2ehvTb6JZ5x','comp8FLpN5bbNUC2fhnkFtM7T16DWvaHs8N5dcaoZWP','CAsieqooSrgVxhgWRwh21gyjq7Rmuhmo4qTW9XzXtAvW'
+          ) and INNER_INSTRUCTION['instructions'][0]['parsed']['type']='mintTo')
         
-        near_transfers as (
-            select a.*, TX_FEE as FEE, FEE_USD
-            from (
-            select BLOCK_TIMESTAMP, TX_HASH, TRADER as user, AMOUNT_IN as usd_amount
-            from near.core.ez_dex_swaps
-            where token_in ilike '%usd%' or token_in ilike 'dai'
-            union 
-            select BLOCK_TIMESTAMP, TX_HASH, TRADER as user, AMOUNT_IN as usd_amount
-            from near.core.ez_dex_swaps
-            where token_out ilike '%usd%' or token_out ilike 'dai'
-            union 
-            select BLOCK_TIMESTAMP, TX_HASH, TRADER as user, AMOUNT_IN*PRICE_USD as usd_amount
-            from near.core.ez_dex_swaps a 
-            join near_prices b
-            on date_trunc(hour, a.BLOCK_TIMESTAMP)=date_trunc(hour, b.RECORDED_HOUR) and SYMBOL='wNEAR'
-            where token_in='wNEAR'
-            union 
-            select BLOCK_TIMESTAMP, TX_HASH, TRADER as user, AMOUNT_IN*PRICE_USD as usd_amount
-            from near.core.ez_dex_swaps a 
-            join near_prices b
-            on date_trunc(hour, a.BLOCK_TIMESTAMP)=date_trunc(hour, b.RECORDED_HOUR) and SYMBOL='wNEAR'
-            where token_out='wNEAR'
-            union
-            select BLOCK_TIMESTAMP, TX_HASH, TX_SIGNER as user, (DEPOSIT/1e24)*PRICE_USD  as usd_amount
-            from near.core.fact_transfers a 
-            join near_prices b
-            on date_trunc(hour, a.BLOCK_TIMESTAMP)=date_trunc(hour, b.RECORDED_HOUR) and SYMBOL='wNEAR'
-            where STATUS=TRUE) a 
-            join near_fees b 
-            on a.TX_HASH=b.TX_HASH), 
         
-        near_txs as (
-            select BLOCK_ID, BLOCK_TIMESTAMP, a.TX_HASH, TX_SIGNER as user, TX_FEE as FEE, FEE_USD, PRICE, TX_STATUS
-            from near.core.fact_transactions a 
-            join near_fees b 
-            on a.TX_HASH=b.TX_HASH)
-          
-          
-          select user, sum(fee) as total_fee, sum(ifnull(FEE_USD,0)) as total_FEE_USD, avg(FEE_USD) as avg_FEE_USD,
-          row_number() over (order by total_FEE_USD desc) as rank
-          from near_txs
-          group by 1  
-          order by total_FEE_USD desc 
-          limit 20`
-       }
+        select sum(AMOUNT) as volume , MINT   from mint a left join solana.core.dim_labels b on a.mint=b.address 
+          where 
+          LABEL_TYPE is null and game='Genopets' and AMOUNT>2
+        
+        group by 2
+        order by 1 desc
+        
+        
+        `
+      },
+      "game-3-2" : {
+        result : null,
+        sql  : `with mint as 
+        (select 
+         INNER_INSTRUCTION['instructions'][0]['parsed']['info']['mint'] as mint ,
+           INNER_INSTRUCTION['instructions'][0]['parsed']['info']['amount'] as amount,
+          date_trunc('day',BLOCK_TIMESTAMP) as date , tx_id,
+        CASE
+        when PROGRAM_ID in ('FLEET1qqzpexyaDpqb2DGsSzE2sDCizewCg9WjrA6DBW','traderDnaR5w6Tcoi3NFm53i48FTDNbGjBSZwWXDRrg','gateVwTnKyFrE8nxUUgfzoZTPKgJQZUbLsEidpG4Dp2') then 'Star Atlas'
+        when PROGRAM_ID in ('HAbiTatJVqoCJd9asyr6RxMEdwtfrQugwp7VAFyKWb1g','CrAFTUv7zKXBaS5471aCwHx7mq9Jp1eQQB5FQgdiSLyi','StaKe9nb7aUjXpjpZ45o6uJBsZxj2BWCDBtjk8LCg2v','srmv4uTCPF81hWDaPyEN2mLZ8XbvzuEM6LsAxR8NpjU') then 'Genopets'
+        when PROGRAM_ID in ('EXpwP3pqPzA4arF8i89w7smtvxHzyYETmCpPspLPrR7J','STkwf3sbMapjy7KV3hgrJtcVvY4SvRxWQ8pj4Enw1i5','StKLLTf7CQ9n5BgXPSDXENovLTCuNc7N2ehvTb6JZ5x','comp8FLpN5bbNUC2fhnkFtM7T16DWvaHs8N5dcaoZWP','CAsieqooSrgVxhgWRwh21gyjq7Rmuhmo4qTW9XzXtAvW') then 'Aurory'
+        end as game 
+        from 
+          solana.core.fact_events
+        
+        where 
+        PROGRAM_ID in ('FLEET1qqzpexyaDpqb2DGsSzE2sDCizewCg9WjrA6DBW','traderDnaR5w6Tcoi3NFm53i48FTDNbGjBSZwWXDRrg','gateVwTnKyFrE8nxUUgfzoZTPKgJQZUbLsEidpG4Dp2',
+          'HAbiTatJVqoCJd9asyr6RxMEdwtfrQugwp7VAFyKWb1g','CrAFTUv7zKXBaS5471aCwHx7mq9Jp1eQQB5FQgdiSLyi','StaKe9nb7aUjXpjpZ45o6uJBsZxj2BWCDBtjk8LCg2v','srmv4uTCPF81hWDaPyEN2mLZ8XbvzuEM6LsAxR8NpjU',
+          'EXpwP3pqPzA4arF8i89w7smtvxHzyYETmCpPspLPrR7J','STkwf3sbMapjy7KV3hgrJtcVvY4SvRxWQ8pj4Enw1i5','StKLLTf7CQ9n5BgXPSDXENovLTCuNc7N2ehvTb6JZ5x','comp8FLpN5bbNUC2fhnkFtM7T16DWvaHs8N5dcaoZWP','CAsieqooSrgVxhgWRwh21gyjq7Rmuhmo4qTW9XzXtAvW'
+          ) and INNER_INSTRUCTION['instructions'][0]['parsed']['type']='burn')
+        
+        
+        select sum(AMOUNT) as volume , MINT   from mint a left join solana.core.dim_labels b on a.mint=b.address 
+          where 
+          LABEL_TYPE is null and game='Genopets' and AMOUNT>2
+        
+        group by 2
+        order by 1 desc
+        
+        
+        `
+      }
     },
 
 };
