@@ -53,7 +53,7 @@
       </template>
     </vs-navbar>
 
-    <main class="pt-13">
+    <main class="pt-13 pb-16 mb-16">
       <div class="container pt-8">
         <div class="row">
           <div class="col-12">
@@ -112,12 +112,16 @@
           </div>
         </div>
 
-        <div style="background-color: #151521" class="px-3 px-lg-8 pt-7 pb-10">
+        <div
+          style="background-color: #151521"
+          class="px-3 px-lg-8 pt-7 pb-10 mb-16"
+        >
           <vue-page-transition name="fade-in-up">
             <router-view />
           </vue-page-transition>
         </div>
-        <HomeFooter />
+        <div style="height: 100px"></div>
+        <!-- <HomeFooter /> -->
       </div>
     </main>
   </div>
@@ -140,7 +144,7 @@ export default {
     };
   },
   components: {
-    HomeFooter: () => import("../components/footer.vue"),
+    // HomeFooter: () => import("../components/footer.vue"),
     RouterLink,
   },
   methods: {
