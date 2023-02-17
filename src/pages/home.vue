@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-lg-6">
+    <div class="col-12">
       <BarChart
         label="Transactions"
         x-type="time"
@@ -51,7 +51,7 @@
       />
     </div>
 
-    <div class="col-12 col-lg-6">
+    <div class="col-12">
       <BarChart
         x-type="time"
         label="Users"
@@ -97,7 +97,7 @@
       />
     </div>
 
-    <div class="col-12 col-lg-6">
+    <div class="col-12">
       <LineChart
         query-name="game-1-1"
         x-type="time"

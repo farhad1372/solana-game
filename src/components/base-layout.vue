@@ -33,9 +33,9 @@
     >
       <template #left>
         <div class="d-flex align-center pl-1 pl-lg-2">
-          <button @click="reduce = !reduce" class="toggle-sidebar-btn mt-1">
+          <!-- <button @click="reduce = !reduce" class="toggle-sidebar-btn mt-1">
             <i class="isax isax-menu-1 lg"></i>
-          </button>
+          </button> -->
 
           <h6 class="ml-3 sidebar-title">Solana Game Analytics</h6>
         </div>
@@ -43,9 +43,9 @@
       <template #right>
         <div class="d-flex align-center pr-1 pr-lg-3">
           <img
-            src="@/assets/sol.png"
+            src="@/assets/icons/solanaLogo.png"
             class="d-none d-sm-block"
-            style="max-width: 100px; height: auto"
+            style="max-width: 130px; height: auto"
           />
           <!-- <vs-button flat>Login</vs-button> -->
           <!-- <vs-button>Get Started</vs-button> -->
