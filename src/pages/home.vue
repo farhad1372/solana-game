@@ -24,7 +24,7 @@
       </div>
       <img
         class="rounded"
-        src="@/assets/images/game-1.jpeg"
+        src="@/assets/images/game-1.webp"
         style="width: 100%"
       />
     </div>
@@ -61,7 +61,7 @@
       />
     </div>
 
-    <div class="col-12 col-lg-6">
+    <div class="col-12">
       <!-- :stacked="{ number: 2, order: ['createAccount', 'transferChecked'] }" -->
       <BarChart
         x-type="time"

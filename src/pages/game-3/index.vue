@@ -13,7 +13,7 @@
       </div>
       <img
         class="rounded"
-        src="@/assets/images/game-3.jpeg"
+        src="@/assets/images/game-3.jpg"
         style="width: 100%"
       />
     </div>
@@ -89,17 +89,9 @@
       />
     </div>
 
-    <div class="col-12 col-lg-6">
-      <BarChart
-        x-type="time"
-        label="Users"
-        title="Daily aurory new users"
-        query-name="game-3-3"
-        :axis="{ x: 'datee', y: 'aurory' }"
-      />
-    </div>
+ 
 
-    <div class="col-12 col-lg-6">
+    <div class="col-12">
       <BarChart
         dot-format-date
         x-type="category"
@@ -107,6 +99,16 @@
         title="Tokens mint on Aurory"
         query-name="game-3-4"
         :axis="{ x: 'mint', y: 'volume' }"
+      />
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <BarChart
+        x-type="time"
+        label="Users"
+        title="Daily aurory new users"
+        query-name="game-3-3"
+        :axis="{ x: 'datee', y: 'aurory' }"
       />
     </div>
 

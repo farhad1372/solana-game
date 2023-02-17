@@ -47,7 +47,7 @@
         </div>
       </template>
       <template #text>
-        <div class="mt-4">
+        <div class="mt-16">
           <DoughnutChartGenerator
             :options="chartOptions"
             :data="DoughnutChartData"

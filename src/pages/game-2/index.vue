@@ -16,7 +16,7 @@
       </div>
       <img
         class="rounded"
-        src="@/assets/images/game-2.jpeg"
+        src="@/assets/images/game-2.webp"
         style="width: 100%"
       />
     </div>

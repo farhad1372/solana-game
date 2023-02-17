@@ -18,6 +18,8 @@
       />
     </div>
 
+   
+
     <div class="col-12 col-lg-6 h-100">
       <DoughnutChart
         query-name="compare-1"

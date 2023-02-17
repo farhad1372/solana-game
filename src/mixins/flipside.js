@@ -4,7 +4,7 @@ export const flipSide = {
     data: function () {
         return {
             apiLoding: false,
-            colors: ['#009ef7', 'rgba(255,71,87,0.8)', '#4CD7D0', '#F9D030', '#A16AE8', '#A1A9FE', '#F6D4D2', '#F41F4E']
+            colors: ['#009ef7', 'rgba(255,71,87,0.8)', '#4CD7D0', '#F9D030', '#A16AE8', '#A1A9FE', 'rgb(80, 205, 137)', '#F41F4E']
         }
     },
     methods: {
